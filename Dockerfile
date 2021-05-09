@@ -1,5 +1,5 @@
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=jupyter/scipy-notebook
+ARG BASE_CONTAINER=jupyter/scipy-notebook:bfb2be718a58
 FROM $BASE_CONTAINER
 LABEL maintainer="Russell <rjjarvis@asu.edu>"
 USER root
@@ -32,7 +32,7 @@ RUN python setup.py install
 RUN python -c "import neuron"
 ENV NEURON_HOME $HOME/nrn-7.7/x86_64
 ENV PATH $NEURON_HOME/bin:$PATH
-WORKDIR $HOME/work/extra_work
+# WORKDIR $HOME/work/extra_work
 WORKDIR $HOME/work
 RUN pip install --upgrade matplotlib
 # RUN conda install tk
