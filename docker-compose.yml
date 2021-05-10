@@ -1,0 +1,8 @@
+version: '3'
+services:
+    pypns:
+        image: mribeiro96/pypns
+        ports:
+            - "8889:8888"
+        environment:
+            GRANT_SUDO: "yes"
