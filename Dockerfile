@@ -12,7 +12,7 @@ RUN apt-get update && \
 RUN apt-get upgrade    
 RUN apt-get install -y ncurses-base ncurses-bin
 RUN apt-get update && apt-get install -y bzip2 ca-certificates automake libtool  \
-                       libncurses5-dev libreadline-dev libgsl0-dev cmake ssh
+                       libncurses5-dev libreadline-dev libgsl0-dev cmake ssh libopenmpi-dev
 USER jovyan
 
 WORKDIR $HOME
@@ -22,7 +22,7 @@ RUN \
   rm nrn-7.7.tar.gz
 WORKDIR $HOME/nrn-7.7
 ENV PATH /usr/bin/python3/python:/opt/conda/bin:/opt/conda/bin/conda:/opt/conda/bin/python:$PATH
-RUN ./configure --prefix=`pwd` --without-iv --with-nrnpython=/opt/conda/bin/python3
+RUN ./configure --prefix=`pwd` --without-iv --with-nrnpython=/opt/conda/bin/python3 --with-paranrn
 USER root
 RUN sudo make all && \
      make install

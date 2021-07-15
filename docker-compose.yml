@@ -1,7 +1,7 @@
 version: '3'
 services:
     pypns:
-        image: mribeiro96/pypns
+        build: .
         ports:
             - "8889:8888"
         environment:
