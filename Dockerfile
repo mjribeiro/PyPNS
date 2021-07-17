@@ -43,6 +43,7 @@ RUN python -c "import tkinter"
 #; import tk"
 RUN git clone https://github.com/mjribeiro/PyPNS
 WORKDIR PyPNS
+RUN git checkout feature/parallel-simulations
 RUN pip install -e .
 
 WORKDIR mods
