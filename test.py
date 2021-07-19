@@ -1,7 +1,7 @@
 import PyPNS
 import matplotlib.pyplot as plt
 import numpy as np
-
+from time import monotonic
 
 # ---------------------------------------------------------------------------
 # --------------------------------- DEFINITION ------------------------------
@@ -25,7 +25,7 @@ rdc = 0.2 # random direction component
 
 # set length of bundle and number of axons
 bundleLength = 40000
-nAxons = 1
+nAxons = 5
 
 # bundle guide
 bundleGuide = PyPNS.createGeometry.get_bundle_guide_straight(bundleLength, segmentLengthAxon)
@@ -120,8 +120,11 @@ for extracellularMech in extracellularMechs:
 # -------------------------------- PyPNS calculation  ---------------------------
 # ------------------------------------------------------------------------------
 
+startTime = monotonic()
 # run the simulation
 bundle.simulate()
+endTime = monotonic()
+print(f"Time to run: {endTime - startTime} s")
 
 PyPNS.save_bundle(bundle)
 print('bundle saved.')

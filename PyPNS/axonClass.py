@@ -11,6 +11,10 @@ import numbers
 
 import PyPNS.createGeometry as createGeometry
 
+# # Parallel NEURON code adapted from: https://neuron.yale.edu/neuron/docs/ball-and-stick-model-part-4
+# # MPI must be initialized before a ParallelContext object is created
+# h.nrnmpi_init()
+# pc = h.ParallelContext()
 
 # Some methods in the Axon class are based on existing methods in the Python package LFPY
 
@@ -64,6 +68,17 @@ class Axon(object):
         # save the type of segments in an array as to identify them afterwards
         self.segmentTypes = None
 
+        # # assign unique global identifiers (gids) to processors
+        # self.set_gids()
+
+    # def set_gids(self):
+    #     """Set the gidlist on this host."""
+    #     # Round-robin counting.
+    #     # Each host has an id from 0 to pc.nhost() - 1.
+    #     self.gidlist = list(range(pc.id(), self._N, pc.nhost()))
+    #     for gid in self.gidlist:
+    #         pc.set_gid2node(gid, pc.id())
+    
     def calc_totnsegs(self):
         # Calculate the number of segments in the allseclist (only possible if NEURON simulation has run)
         i = 0
@@ -348,7 +363,6 @@ class Axon(object):
                 cumulatedLengthOnGuideSeg = 0
 
     def create_neuron_object(self):
-
 
         # # general things to do
         # self.allseclist = h.SectionList()

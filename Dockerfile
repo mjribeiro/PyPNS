@@ -32,15 +32,16 @@ RUN python setup.py install
 RUN python -c "import neuron"
 ENV NEURON_HOME $HOME/nrn-7.7/x86_64
 ENV PATH $NEURON_HOME/bin:$PATH
-# WORKDIR $HOME/work/extra_work
+
 WORKDIR $HOME/work
 RUN pip install --upgrade matplotlib
-# RUN conda install tk
-# RUN pip install tkinter
+
+RUN pip install mpi4py
+RUN pip install ipyparallel
+
 RUN python -c "import tkinter"
-#import matplotlib as mpl;mpl.use('TkAgg')"
 RUN python -c "import tkinter"
-#; import tk"
+
 RUN git clone https://github.com/mjribeiro/PyPNS
 WORKDIR PyPNS
 RUN git checkout feature/parallel-simulations
@@ -48,17 +49,15 @@ RUN pip install -e .
 
 WORKDIR mods
 RUN nrnivmodl
-#RUN pip install tk
-#RUN pip install --upgrade tk
-
+RUN pip install tk
+RUN pip install --upgrade tk
 
 RUN python -c "import neuron"
 RUN python -c "import PyPNS"
-#RUN python -c "import matplotlib as mpl;mpl.use('TkAgg'); import PyPNS"
+
 WORKDIR $HOME/work/PyPNS/
 RUN ls mods/*
 RUN cp mods/*.mod .
 RUN nrnivmodl
 RUN python test.py
 WORKDIR $HOME
-#ENTRYPOINT /bin/bash
