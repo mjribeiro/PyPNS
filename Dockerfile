@@ -1,6 +1,13 @@
 # Distributed under the terms of the Modified BSD License.
 ARG BASE_CONTAINER=jupyter/scipy-notebook:python-3.7.12
 FROM $BASE_CONTAINER
+
+# Dev container information
+ARG USERNAME=jovyan
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Remaining PyPNS Dockerfile
 LABEL maintainer="Russell <rjjarvis@asu.edu>"
 USER root
 RUN apt-get update && \
@@ -9,7 +16,7 @@ RUN apt-get update && \
     gfortran \
     gcc && \
     rm -rf /var/lib/apt/lists/*
-RUN apt-get upgrade    
+RUN apt-get upgrade
 RUN apt-get install -y ncurses-base ncurses-bin
 RUN apt-get update && apt-get install -y bzip2 ca-certificates automake libtool  \
                        libncurses5-dev libreadline-dev libgsl0-dev cmake ssh
