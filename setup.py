@@ -17,11 +17,11 @@ setup(
     maintainer_email = 'c.lubba15@imperial.ac.uk',
     packages = ['PyPNS'],
     url='https://github.com/caaarl/PyPNS',
-    download_url = 'https://github.com/caaarl/PyPNS/archive/0.1.0.tar.gz',
+    # download_url = 'https://github.com/caaarl/PyPNS/archive/0.1.0.tar.gz',
     license='LICENSE',
     description='A peripheral nerve simulator built on NEURON',
     #long_description=,
-    install_requires = ['numpy', 'scipy', 'matplotlib'], # , 'neuron' excluded because we need a higher version.
+    install_requires = ['neuron','numpy', 'scipy', 'matplotlib'], # , 'neuron' excluded because we need a higher version.
     provides = ['PyPNS'],
     classifiers=[
             "Programming Language :: Python :: 3",
